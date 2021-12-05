@@ -106,7 +106,7 @@ function handleMouseDown(event) {
         eraseLine(x, y);
     }
     else if (filling) {
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        clearCanvas(undefined, ctx.fillStyle);
         currentBackgroundColor = ctx.fillStyle;
     } else {
         startPainting();
@@ -200,6 +200,8 @@ function clearCanvas(event, color = "white") {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.fillStyle = currentFillStyle;
+
+    pathObjArr = [];
 }
 
 clearBtn.addEventListener("click", clearCanvas);
