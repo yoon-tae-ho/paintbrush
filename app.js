@@ -5,6 +5,9 @@ const ctx = canvas.getContext('2d');
 
 const INITIAL_COLOR = "#2c2c2c";
 
+let currentPath = new Path2D();
+let pathObjArr = [];
+
 // Default Canvas Background Color for Image Saving
 clearCanvas();
 
@@ -17,9 +20,6 @@ let filling = false;
 let erasing = false;
 let currentBackgroundColor = "white";
 
-let currentPath = new Path2D();
-let pathObjArr = [];
-
 function eraseLine(x, y) {
     let count = 0;
 
@@ -31,7 +31,7 @@ function eraseLine(x, y) {
     });
     
     if (count > 0) {
-        clearCanvas(undefined, currentBackgroundColor);
+        clearCanvas(undefined, currentBackgroundColor, false);
         const currentStrokeStyle = ctx.strokeStyle;
         const currentLineWidth = ctx.lineWidth;
         pathObjArr.forEach(pathObj => {
@@ -191,7 +191,7 @@ if (saveBtn) {
 
 const clearBtn = document.querySelector("#jsClear");
 
-function clearCanvas(event, color = "white") {
+function clearCanvas(event, color = "white", clearArr = true) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     const currentFillStyle = ctx.fillStyle;
@@ -201,7 +201,9 @@ function clearCanvas(event, color = "white") {
 
     ctx.fillStyle = currentFillStyle;
 
-    pathObjArr = [];
+    if (clearArr) {
+        pathObjArr = [];
+    }
 }
 
 clearBtn.addEventListener("click", clearCanvas);
