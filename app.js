@@ -225,3 +225,8 @@ function handleEraseClick() {
 }
 
 eraseBtn.addEventListener("click", handleEraseClick);
+
+// Mobile Touch Function Reference
+// https://github.com/hyecheol123/NomadCoder-PaintJS/blob/main/painting-board/app.js
+// https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent
+// https://developer.mozilla.org/ko/docs/Web/API/Touch_events
