@@ -33,13 +33,16 @@ function eraseLine(x, y) {
     if (count > 0) {
         clearCanvas(undefined, currentBackgroundColor);
         const currentStrokeStyle = ctx.strokeStyle;
+        const currentLineWidth = ctx.lineWidth;
         pathObjArr.forEach(pathObj => {
             if(pathObj.visible === true) {
                 ctx.strokeStyle = pathObj.color;
+                ctx.lineWidth = pathObj.width;
                 ctx.stroke(pathObj.path);
             }
         });
         ctx.strokeStyle = currentStrokeStyle;
+        ctx.lineWidth = currentLineWidth;
     }
 }
 
@@ -47,7 +50,8 @@ function storeCurrentPath() {
     const newPathObj = {
         path: currentPath,
         visible: true,
-        color: ctx.strokeStyle
+        color: ctx.strokeStyle,
+        width: ctx.lineWidth
     };
     pathObjArr.push(newPathObj);
 }
